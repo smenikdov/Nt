@@ -8,3 +8,4 @@ pub mod interface;
 pub mod line_number;
 pub mod rect;
 pub mod watermark;
+pub mod image;

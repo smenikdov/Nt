@@ -14,6 +14,7 @@ use crate::components::interface::render_error;
 use crate::components::line_number::LineNumber;
 use crate::components::rect::Rect;
 use crate::components::watermark::Watermark;
+use crate::components::image::Image;
 use crate::config::TakeSnapshotParams;
 
 // Scale the screenshot to 3 times its size
@@ -40,6 +41,7 @@ pub fn take_snapshot(params: TakeSnapshotParams) -> render_error::Result<Pixmap>
     } else {
         "".to_string()
     };
+
     let pixmap = Container::from_children(vec![Box::new(Background::new(
         background_padding,
         vec![
@@ -69,10 +71,17 @@ pub fn take_snapshot(params: TakeSnapshotParams) -> render_error::Result<Pixmap>
                     ])),
                 ],
             )),
-            Box::new(Watermark::new(watermark)),
+
+
+            if let Some(image_path) = watermark_image {
+                Box::new(Image::new("../../assets/images/logo.svg", 200.)) // Задайте нужную ширину изображения
+            } else {
+                //Box::new(Watermark::new(watermark)),
+            },
         ],
     ))])
     .draw_root(&context)?;
 
     Ok(pixmap)
 }
+
