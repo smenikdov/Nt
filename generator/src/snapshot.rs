@@ -73,11 +73,8 @@ pub fn take_snapshot(params: TakeSnapshotParams) -> render_error::Result<Pixmap>
             )),
 
 
-            if let Some(image_path) = watermark_image {
-                Box::new(Image::new("../../assets/images/logo.svg", 200.)) // Задайте нужную ширину изображения
-            } else {
-                //Box::new(Watermark::new(watermark)),
-            },
+            Box::new(Image::new("../../assets/images/logo.svg", 200.)) // Задайте нужную ширину изображения
+            //Box::new(Watermark::new(watermark)),
         ],
     ))])
     .draw_root(&context)?;
