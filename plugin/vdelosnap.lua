@@ -1,4 +1,4 @@
-local codesnap = require("codesnap")
+local codesnap = require("vdelosnap")
 
 -- The func param is a function that come from rust side, the function
 -- may raise exception to user side, the run_generator_function is used to
