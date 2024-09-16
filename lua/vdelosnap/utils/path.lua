@@ -1,5 +1,5 @@
-local string_utils = require("codesnap.utils.string")
-local platform_utils = require("codesnap.utils.platform")
+local string_utils = require("vdelosnap.utils.string")
+local platform_utils = require("vdelosnap.utils.platform")
 local path_utils = {}
 
 function path_utils.get_escaped_cwd()

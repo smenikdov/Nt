@@ -1,9 +1,9 @@
-local static = require("codesnap.static")
-local visual_utils = require("codesnap.utils.visual")
-local table_utils = require("codesnap.utils.table")
-local string_utils = require("codesnap.utils.string")
-local config_module = require("codesnap.config")
-local highlight_module = require("codesnap.highlight")
+local static = require("vdelosnap.static")
+local visual_utils = require("vdelosnap.utils.visual")
+local table_utils = require("vdelosnap.utils.table")
+local string_utils = require("vdelosnap.utils.string")
+local config_module = require("vdelosnap.config")
+local highlight_module = require("vdelosnap.highlight")
 
 local main = {
   cwd = static.cwd,

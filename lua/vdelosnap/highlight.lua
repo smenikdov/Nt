@@ -1,5 +1,5 @@
-local string_utils = require("codesnap.utils.string")
-local table_utils = require("codesnap.utils.table")
+local string_utils = require("vdelosnap.utils.string")
+local table_utils = require("vdelosnap.utils.table")
 local highlight_module = {}
 
 function highlight_module.call_cb_with_parsed_config(cb_name, highlight_start_line_number, highlight_end_line_number)

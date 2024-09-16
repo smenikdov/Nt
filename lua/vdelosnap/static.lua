@@ -1,4 +1,4 @@
-local path_utils = require("codesnap.utils.path")
+local path_utils = require("vdelosnap.utils.path")
 
 return {
   config = {

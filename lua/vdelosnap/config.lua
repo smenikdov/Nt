@@ -1,8 +1,8 @@
-local visual_utils = require("codesnap.utils.visual")
-local path_utils = require("codesnap.utils.path")
-local string_utils = require("codesnap.utils.string")
-local static = require("codesnap.static")
-local table_utils = require("codesnap.utils.table")
+local visual_utils = require("vdelosnap.utils.visual")
+local path_utils = require("vdelosnap.utils.path")
+local string_utils = require("vdelosnap.utils.string")
+local static = require("vdelosnap.static")
+local table_utils = require("vdelosnap.utils.table")
 local config_module = {}
 
 local assets_folder = static.cwd .. "/assets"
