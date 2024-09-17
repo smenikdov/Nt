@@ -1,7 +1,7 @@
 use super::interface::{
     component::{Component, ComponentContext, RenderParams},
     render_error,
-    style::{ComponentAlign, ComponentStyle, RawComponentStyle, Style},
+    style::{ComponentAlign, ComponentStyle, RawComponentStyle},
 };
 use tiny_skia::{Pixmap, Transform, IntSize, PixmapPaint};
 use image::io::Reader as ImageReader; // Используем crate `image` для загрузки изображений
@@ -35,10 +35,7 @@ impl Component for Image {
     }
 
     fn style(&self) -> RawComponentStyle {
-        Style::default()
-            .min_width(self.width)
-            .align(ComponentAlign::Row)
-            .padding(Padding::from_value(IMAGE_PADDING))
+        RawComponentStyle::default()
     }
 
     fn draw_self(
