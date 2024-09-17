@@ -62,6 +62,10 @@ impl Highlight {
         };
 
 
+        println!(1234);
+        println!(syntax.name);
+
+
         // The Syntect clearly distinguish between PHP and PHP Source
         // Should use PHP as highlight language if the source content contains "<php" tag
         // Should use PHP Source as highlight language if the source content not contains "<php" tag
