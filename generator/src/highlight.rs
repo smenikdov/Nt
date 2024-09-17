@@ -47,18 +47,18 @@ impl Highlight {
                 //if true {
                     syntax_set
                         .find_syntax_by_extension("js")
-                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?,
+                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?
                 //} else {
                 //    syntax_set
                 //        .find_syntax_by_extension(&extension)
                 //        .ok_or(RenderError::HighlightCodeFailed(extension.to_string()))?,
                 //}
-            }
+            },
             None => {
                 //if true {
                     syntax_set
                         .find_syntax_by_extension("js")
-                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?,
+                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?
                 //} else {
                 //    syntax_set
                 //        .find_syntax_for_file(&self.code_file_path)
