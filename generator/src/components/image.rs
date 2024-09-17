@@ -61,7 +61,7 @@ impl Component for Image {
 
         let img_pixmap = Pixmap::from_vec(
             img.into_vec(),
-            IntSize::from_wh(img_width as u32, img_height as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
+            IntSize::from_wh(img_width * 0.3 as u32, img_height * 0.3 as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
         ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
         pixmap.draw_pixmap(
