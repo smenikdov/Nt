@@ -73,7 +73,7 @@ impl Component for Image {
 
         // Отрисовываем изображение с учётом масштаба и padding
         pixmap.draw_pixmap(
-            (x + parent_style.width) as i32,
+            (x + parent_style.width / 2 + w / 2) as i32,
             (y + scaled_height) as i32,
             img_pixmap.as_ref(),            // Используем as_ref(), чтобы передать ссылку на Pixmap
             &PixmapPaint::default(),         // Используем PixmapPaint по умолчанию
