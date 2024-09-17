@@ -73,14 +73,14 @@ impl Highlight {
         // The Syntect clearly distinguish between PHP and PHP Source
         // Should use PHP as highlight language if the source content contains "<php" tag
         // Should use PHP Source as highlight language if the source content not contains "<php" tag
-        if let Some(identifier) = self.highlighting_language_source_map.get(&syntax.name[..]) {
-            if !self.content.contains(identifier) {
-                return Ok(syntax_set
-                    .find_syntax_by_name(&format!("{} Source", &syntax.name))
-                    .unwrap_or(syntax)
-                    .to_owned());
-            }
-        }
+        //if let Some(identifier) = self.highlighting_language_source_map.get(&syntax.name[..]) {
+        //    if !self.content.contains(identifier) {
+        //        return Ok(syntax_set
+        //            .find_syntax_by_name(&format!("{} Source", &syntax.name))
+        //            .unwrap_or(syntax)
+        //            .to_owned());
+        //    }
+        //}
 
         Ok(syntax.to_owned())
     }
