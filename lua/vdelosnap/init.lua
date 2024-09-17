@@ -56,6 +56,8 @@ end
 
 function main.highlight_mode_copy_into_clipboard(extension)
     main.highlight_mode_config = config_module.get_config(extension)
+    print(123)
+    print(extension)
 
     highlight_module.create_highlight_selector_window(
         "copy_into_clipboard_with_config",
