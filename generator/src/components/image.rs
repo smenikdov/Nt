@@ -61,17 +61,17 @@ impl Component for Image {
 
         let img_pixmap = Pixmap::from_vec(
             img.into_vec(),
-            IntSize::from_wh(img_width * 0.3 as u32, img_height * 0.3 as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
+            IntSize::from_wh(img_width as u32, img_height as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
         ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
         pixmap.draw_pixmap(
-            (x) as i32,
-            (y) as i32,
+            (x * 0.3) as i32,
+            (y * 0.3) as i32,
             //(parent_style.width / 2.0 - img_width * 0.3 / 2.0) as i32,
             //(y - img_height * 0.3 / 2.0) as i32,
             img_pixmap.as_ref(),
             &PixmapPaint::default(),
-            Transform::from_scale(context.scale_factor, context.scale_factor),
+            Transform::from_scale(context.scale_factor * 0.3, context.scale_factor * 0.3),
             None,
         );
 
