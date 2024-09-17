@@ -19,6 +19,9 @@ pub enum RenderError {
 
     #[error("No such file {0}")]
     NoSuchFile(String),
+
+    #[error("{0}")]
+    Other(String),
 }
 
 impl From<RenderError> for nvim_oxi::Error {

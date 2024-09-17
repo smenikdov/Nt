@@ -73,7 +73,7 @@ pub fn take_snapshot(params: TakeSnapshotParams) -> render_error::Result<Pixmap>
             )),
 
 
-            Box::new(Image::new("../../assets/images/logo.svg", 200.)) // Задайте нужную ширину изображения
+            Box::new(Image::new("../../assets/images/logo.svg".to_string(), 200.0)) // Задайте нужную ширину изображения
             //Box::new(Watermark::new(watermark)),
         ],
     ))])

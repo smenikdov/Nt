@@ -3,22 +3,22 @@ use super::interface::{
     render_error,
     style::{ComponentAlign, ComponentStyle, RawComponentStyle, Style},
 };
-use tiny_skia::{Pixmap, Transform};
+use tiny_skia::{Pixmap, Transform, IntSize, PixmapPaint};
 use std::path::Path;
 use image::io::Reader as ImageReader; // Используем crate `image` для загрузки изображений
 use crate::edges::padding::Padding;
 
 pub const IMAGE_PADDING: f32 = 10.;
 
-pub struct ImageComponent {
+pub struct Image {
     path: String,
     width: f32,
+    children: Vec<Box<dyn Component>>,
 }
 
-impl Component for ImageComponent {
+impl Component for Image {
     fn children(&self) -> &Vec<Box<dyn Component>> {
-        // У ImageComponent нет дочерних элементов, поэтому возвращаем пустой вектор
-        &Vec::new()
+        &self.children
     }
 
     fn style(&self) -> RawComponentStyle {
@@ -41,7 +41,10 @@ impl Component for ImageComponent {
         let w = style.width;
 
         // Загружаем изображение с помощью библиотеки image
-        let img = ImageReader::open(&self.path)?.decode()?;
+        let img = ImageReader::open(&self.path)
+            .map_err(|e| render_error::RenderError::Other(format!("Failed to open image: {}", e)))?
+            .decode()
+            .map_err(|e| render_error::RenderError::Other(format!("Failed to decode image: {}", e)))?;
         let img = img.to_rgba8(); // Преобразуем изображение в формат RGBA
 
         // Преобразуем изображение в Pixmap и отрисовываем
@@ -52,16 +55,16 @@ impl Component for ImageComponent {
 
         let img_pixmap = Pixmap::from_vec(
             img.into_vec(),
-            img_width as u32,
-            img_height as u32
-        ).ok_or_else(|| render_error::RenderError::InvalidImage)?;
+            IntSize::from_wh(img_width as u32, img_height as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
+        ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
         // Отрисовываем изображение с учётом масштаба и padding
         pixmap.draw_pixmap(
             x as i32,
             y as i32,
-            &img_pixmap,
-            &Transform::from_scale(scale_factor, scale_factor),
+            img_pixmap.as_ref(),            // Используем as_ref(), чтобы передать ссылку на Pixmap
+            &PixmapPaint::default(),         // Используем PixmapPaint по умолчанию
+            Transform::from_scale(scale_factor, scale_factor),
             None,
         );
 
@@ -69,11 +72,12 @@ impl Component for ImageComponent {
     }
 }
 
-impl ImageComponent {
-    pub fn new(path: String, width: f32) -> ImageComponent {
-        ImageComponent {
+impl Image {
+    pub fn new(path: String, width: f32) -> Image {
+        Image {
             path,
             width,
+            children: vec![],
         }
     }
 }
