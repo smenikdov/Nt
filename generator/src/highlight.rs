@@ -44,29 +44,22 @@ impl Highlight {
         let syntax = match &self.extension {
             Some(extension) => {
                 //if extension == String::from("vue") {
-                //if true {
-                    syntax_set
-                        .find_syntax_by_extension("js")
-                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?
-                //} else {
                 //    syntax_set
-                //        .find_syntax_by_extension(&extension)
-                //        .ok_or(RenderError::HighlightCodeFailed(extension.to_string()))?,
+                //        .find_syntax_by_extension("js")
+                //        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?
+                //} else {
+                    syntax_set
+                        .find_syntax_by_extension(&extension)
+                        .ok_or(RenderError::HighlightCodeFailed(extension.to_string()))?
                 //}
             },
             None => {
-                //if true {
-                    syntax_set
-                        .find_syntax_by_extension("js")
-                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?
-                //} else {
-                //    syntax_set
-                //        .find_syntax_for_file(&self.code_file_path)
-                //        .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
-                //        .ok_or(RenderError::HighlightCodeFailed(
-                //            self.code_file_path.to_string(),
-                //        ))?
-                //}
+                syntax_set
+                    .find_syntax_for_file(&self.code_file_path)
+                    .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
+                    .ok_or(RenderError::HighlightCodeFailed(
+                        self.code_file_path.to_string(),
+                    ))?
             }
         };
 
