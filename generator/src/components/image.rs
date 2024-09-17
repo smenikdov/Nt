@@ -4,9 +4,10 @@ use super::interface::{
     style::{ComponentAlign, ComponentStyle, RawComponentStyle, Style},
 };
 use tiny_skia::{Pixmap, Transform, IntSize, PixmapPaint};
-use std::path::Path;
 use image::io::Reader as ImageReader; // Используем crate `image` для загрузки изображений
 use crate::edges::padding::Padding;
+use std::env;
+use std::path::{Path, PathBuf};
 
 pub const IMAGE_PADDING: f32 = 10.;
 
@@ -14,6 +15,18 @@ pub struct Image {
     path: String,
     width: f32,
     children: Vec<Box<dyn Component>>,
+}
+
+
+fn expand_tilde(path: &str) -> PathBuf {
+    if path.starts_with("~/") {
+        if let Some(home_dir) = env::home_dir() {
+            // Заменяем `~` на домашнюю директорию
+            let without_tilde = path.strip_prefix("~/").unwrap();
+            return PathBuf::from(home_dir).join(without_tilde);
+        }
+    }
+    PathBuf::from(path)
 }
 
 impl Component for Image {
@@ -41,7 +54,7 @@ impl Component for Image {
         let w = style.width;
 
         // Загружаем изображение с помощью библиотеки image
-        let img = ImageReader::open(&self.path)
+        let img = ImageReader::open(expand_tilde(&self.path))
             .map_err(|e| render_error::RenderError::Other(format!("Failed to open image: {}", e)))?
             .decode()
             .map_err(|e| render_error::RenderError::Other(format!("Failed to decode image: {}", e)))?;
