@@ -66,7 +66,7 @@ impl Component for Image {
 
         pixmap.draw_pixmap(
             (x + img_width / 2.0 * context.scale_factor) as i32,
-            (y) as i32,
+            (y - img_height / 2.0 * context.scale_factor) as i32,
             img_pixmap.as_ref(),            // Используем as_ref(), чтобы передать ссылку на Pixmap
             &PixmapPaint::default(),         // Используем PixmapPaint по умолчанию
             Transform::from_scale(context.scale_factor, context.scale_factor),
