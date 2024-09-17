@@ -47,8 +47,6 @@ function main.save_snapshot_with_config(config)
 end
 
 function main.copy_into_clipboard(extension)
-    print(123)
-    print(extension)
     main.copy_into_clipboard_with_config(config_module.get_config(extension))
 end
 
