@@ -80,7 +80,7 @@ impl Component for Rect {
         path_builder.close();
         let path = path_builder.finish().unwrap();
         let mut paint = Paint::default();
-        paint.set_color_rgba8(58, 52, 50, 255);
+        paint.set_color_rgba8(0, 0, 0, 255);
 
         pixmap.fill_path(
             &path,
