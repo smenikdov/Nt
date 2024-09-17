@@ -43,7 +43,8 @@ impl Highlight {
         // By default, using filepath to detect what syntax should use
         let syntax = match &self.extension {
             Some(extension) => {
-                if extension == String::from("vue") {
+                //if extension == String::from("vue") {
+                if true {
                     syntax_set
                         .find_syntax_by_extension("js")
                         .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?,
