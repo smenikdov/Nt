@@ -71,7 +71,7 @@ impl Component for Image {
             //(y - img_height * 0.3 / 2.0) as i32,
             img_pixmap.as_ref(),
             &PixmapPaint::default(),
-            Transform::from_scale(context.scale_factor * 0.3, context.scale_factor * 0.3),
+            Transform::from_scale(context.scale_factor, context.scale_factor),
             None,
         );
 
