@@ -74,7 +74,7 @@ impl Component for Image {
             (y) as i32,
             img_pixmap.as_ref(),            // Используем as_ref(), чтобы передать ссылку на Pixmap
             &PixmapPaint::default(),         // Используем PixmapPaint по умолчанию
-            Transform::from_scale(1, 1),
+            Transform::from_scale(context.scale_factor, context.scale_factor),
             None,
         );
 
