@@ -55,12 +55,18 @@ impl Highlight {
                 }
             }
             None => {
-                syntax_set
-                    .find_syntax_for_file(&self.code_file_path)
-                    .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
-                    .ok_or(RenderError::HighlightCodeFailed(
-                        self.code_file_path.to_string(),
-                    ))?
+                if true {
+                    syntax_set
+                        .find_syntax_by_extension("js")
+                        .ok_or(RenderError::HighlightCodeFailed("js".to_string()))?,
+                } else {
+                    syntax_set
+                        .find_syntax_for_file(&self.code_file_path)
+                        .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
+                        .ok_or(RenderError::HighlightCodeFailed(
+                            self.code_file_path.to_string(),
+                        ))?
+                }
             }
         };
 
