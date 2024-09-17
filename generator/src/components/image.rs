@@ -48,7 +48,6 @@ impl Component for Image {
     ) -> render_error::Result<()> {
         let x = render_params.x;
         let y = render_params.y;
-        let w = style.width;
 
         // Загружаем изображение с помощью библиотеки image
         let img = ImageReader::open(expand_tilde(&self.path))
@@ -57,20 +56,16 @@ impl Component for Image {
             .map_err(|e| render_error::RenderError::Other(format!("Failed to decode image: {}", e)))?;
         let img = img.to_rgba8(); // Преобразуем изображение в формат RGBA
 
-        // Преобразуем изображение в Pixmap и отрисовываем
         let img_width = img.width() as f32;
         let img_height = img.height() as f32;
-        let scale_factor = w / img_width; // Масштабирование по ширине
-        let scaled_height = img_height * scale_factor;
 
         let img_pixmap = Pixmap::from_vec(
             img.into_vec(),
             IntSize::from_wh(img_width as u32, img_height as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
         ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
-        // Отрисовываем изображение с учётом масштаба и padding
         pixmap.draw_pixmap(
-            (x) as i32,
+            (x + img_width / 2.0 * context.scale_factor) as i32,
             (y) as i32,
             img_pixmap.as_ref(),            // Используем as_ref(), чтобы передать ссылку на Pixmap
             &PixmapPaint::default(),         // Используем PixmapPaint по умолчанию
