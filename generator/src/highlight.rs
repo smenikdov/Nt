@@ -45,8 +45,8 @@ impl Highlight {
             Some(extension) => {
                 if extension == "vue" {
                     syntax_set
-                        .find_syntax_by_name("JavaScript")
-                        .unwrap_or_else(|| syntax_set.find_syntax_plain_text())
+                        .find_syntax_by_extension("js")
+                        .ok_or(RenderError::HighlightCodeFailed(extension.to_string()))?,
                 } else {
                     syntax_set
                         .find_syntax_by_extension(&extension)
