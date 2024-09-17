@@ -14,8 +14,7 @@ local function take_snapshot(take_snapshot_function)
         local args = detail.fargs
 
         run_generator_function(function()
-            -- take_snapshot_function(args[1])
-            take_snapshot_function("vue")
+            take_snapshot_function(args[1])
         end)
     end
 end

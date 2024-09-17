@@ -44,12 +44,11 @@ impl Highlight {
         let syntax = match &self.extension {
             Some(extension) => {
                 if extension == "vue" {
-                    syntax_set
-                        .find_syntax_for_file(&self.content)
-                        .map_err(|_| RenderError::NoSuchFile(self.content.to_string()))?
-                        .ok_or(RenderError::HighlightCodeFailed(
-                            self.code_file_path.to_string(),
-                        ))?
+                    // TODO
+                    if true {
+                        syntax_set
+                            .find_syntax_by_extension("js")
+                    }
                 } else {
                     syntax_set
                         .find_syntax_by_extension(&extension)
