@@ -9,7 +9,7 @@ use crate::edges::padding::Padding;
 use std::env;
 use std::path::{Path, PathBuf};
 
-pub const IMAGE_PADDING: f32 = 10.;
+pub const IMAGE_PADDING: f32 = 0.;
 
 pub struct Image {
     path: String,
