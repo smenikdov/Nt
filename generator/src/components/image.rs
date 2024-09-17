@@ -65,8 +65,10 @@ impl Component for Image {
         ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
         pixmap.draw_pixmap(
-            (parent_style.width / 2.0 - img_width * 0.3 / 2.0) as i32,
-            (y - img_height * 0.3 / 2.0) as i32,
+            (x) as i32,
+            (y) as i32,
+            //(parent_style.width / 2.0 - img_width * 0.3 / 2.0) as i32,
+            //(y - img_height * 0.3 / 2.0) as i32,
             img_pixmap.as_ref(),
             &PixmapPaint::default(),
             Transform::from_scale(context.scale_factor * 0.3, context.scale_factor * 0.3),
