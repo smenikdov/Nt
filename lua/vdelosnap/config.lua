@@ -46,7 +46,7 @@ function config_module.get_config(extension)
         code_file_path = vim.fn.expand("%:p"),
         fonts_folder = assets_folder .. "/fonts",
         themes_folder = assets_folder .. "/themes",
-        theme = "dark",
+        theme = "base16-onedark",
         file_path = static.config.has_breadcrumbs and get_file_path(static.config.show_workspace) or "",
         start_line_number = static.config.has_line_number and start_line_number or nil,
     }, static.config)
