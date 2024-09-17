@@ -45,13 +45,22 @@ impl Highlight {
             Some(extension) => syntax_set
                 .find_syntax_by_extension(&extension)
                 .ok_or(RenderError::HighlightCodeFailed(extension.to_string()))?,
-            None => syntax_set
-                .find_syntax_for_file(&self.code_file_path)
-                .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
-                .ok_or(RenderError::HighlightCodeFailed(
-                    self.code_file_path.to_string(),
-                ))?,
+            None => {
+                if extension == "vue" {
+                    syntax_set
+                        .find_syntax_by_name("JavaScript")
+                        .unwrap_or_else(|| syntax_set.find_syntax_plain_text())
+                } else {
+                    syntax_set
+                        .find_syntax_for_file(&self.code_file_path)
+                        .map_err(|_| RenderError::NoSuchFile(self.code_file_path.to_string()))?
+                        .ok_or(RenderError::HighlightCodeFailed(
+                            self.code_file_path.to_string(),
+                        ))?
+                }
+            }
         };
+
 
         // The Syntect clearly distinguish between PHP and PHP Source
         // Should use PHP as highlight language if the source content contains "<php" tag
