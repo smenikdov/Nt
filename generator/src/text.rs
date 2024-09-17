@@ -42,8 +42,8 @@ impl FontRenderer {
         let mut buffer = Buffer::new(&mut self.font_system, self.metrics);
         buffer.set_size(
             &mut self.font_system,
-            Some(w * self.scale_factor * 0.3),
-            Some(h * self.scale_factor * 0.3),
+            Some(w * self.scale_factor),
+            Some(h * self.scale_factor),
         );
         buffer.set_rich_text(
             &mut self.font_system,
