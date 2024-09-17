@@ -66,9 +66,7 @@ impl Component for Image {
 
         pixmap.draw_pixmap(
             (parent_style.width / 0.3 / 2.0 - img_width * 0.3 * 2.0) as i32,
-            (y / 0.3) as i32,
-            //(parent_style.width / 2.0 - img_width * 0.3 / 2.0) as i32,
-            //(y - img_height * 0.3 / 2.0) as i32,
+            (y / 0.3 - img_height * 0.3 / 2.0) as i32,
             img_pixmap.as_ref(),
             &PixmapPaint::default(),
             Transform::from_scale(context.scale_factor * 0.3, context.scale_factor * 0.3),
