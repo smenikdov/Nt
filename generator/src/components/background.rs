@@ -116,7 +116,7 @@ impl Background {
             ],
             "vdelo" => vec![
                 GradientStop::new(0.0, Color::from_rgba8(168, 101, 141, 255)),
-                GradientStop::new(0.5, Color::from_rgba8(6, 105, 189, 255)),
+                GradientStop::new(0.6, Color::from_rgba8(6, 105, 189, 255)),
             ],
             _ => return Err(RenderError::UnknownBackgroundTheme(theme.to_string())),
         };
