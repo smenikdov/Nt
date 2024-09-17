@@ -114,30 +114,9 @@ impl Background {
                 GradientStop::new(0.5, Color::from_rgba8(215, 109, 119, 255)),
                 GradientStop::new(0.95, Color::from_rgba8(255, 175, 123, 255)),
             ],
-            "sea" => vec![
-                GradientStop::new(0.0, Color::from_rgba8(31, 162, 255, 255)),
-                GradientStop::new(0.4, Color::from_rgba8(18, 216, 250, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(166, 255, 203, 255)),
-            ],
-            "grape" => vec![
-                GradientStop::new(0.28, Color::from_rgba8(103, 90, 247, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(189, 101, 250, 255)),
-            ],
-            "peach" => vec![
-                GradientStop::new(0.22, Color::from_rgba8(221, 94, 137, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(247, 187, 151, 255)),
-            ],
-            "summer" => vec![
-                GradientStop::new(0.28, Color::from_rgba8(248, 165, 194, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(116, 185, 255, 255)),
-            ],
-            "bamboo" => vec![
-                GradientStop::new(0.22, Color::from_rgba8(107, 203, 165, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(202, 244, 194, 255)),
-            ],
-            "dusk" => vec![
-                GradientStop::new(0.22, Color::from_rgba8(255, 98, 110, 255)),
-                GradientStop::new(0.95, Color::from_rgba8(255, 190, 113, 255)),
+            "vdelo" => vec![
+                GradientStop::new(0.0, Color::from_rgba8(6, 105, 189, 255)),
+                GradientStop::new(0.5, Color::from_rgba8(168, 101, 141, 255)),
             ],
             _ => return Err(RenderError::UnknownBackgroundTheme(theme.to_string())),
         };

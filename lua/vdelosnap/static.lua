@@ -2,10 +2,10 @@ local path_utils = require("vdelosnap.utils.path")
 
 return {
     config = {
-        mac_window_bar = false,
+        mac_window_bar = true,
         save_path = "~/Pictures",
         has_breadcrumbs = true,
-        bg_theme = "grape",
+        bg_theme = "vdelo",
         show_workspace = false,
         breadcrumbs_separator = "/",
         has_line_number = true,
