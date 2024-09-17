@@ -43,7 +43,7 @@ impl Highlight {
         // By default, using filepath to detect what syntax should use
         let syntax = match &self.extension {
             Some(extension) => {
-                if true {
+                if extension == "vue" {
                     syntax_set
                         .find_syntax_for_file(&self.content)
                         .map_err(|_| RenderError::NoSuchFile(self.content.to_string()))?
