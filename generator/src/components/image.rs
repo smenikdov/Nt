@@ -64,12 +64,14 @@ impl Component for Image {
             IntSize::from_wh(img_width as u32, img_height as u32).ok_or_else(|| render_error::RenderError::Other("Invalid image size".to_string()))?
         ).ok_or_else(|| render_error::RenderError::Other("Invalid image data".to_string()))?;
 
+        let sc = 0.25;
+
         pixmap.draw_pixmap(
-            (parent_style.width / 0.3 / 2.0 - img_width * 0.3 * 2.0) as i32,
-            (y / 0.3 - img_height * 0.3 - 20.0) as i32,
+            (parent_style.width / sc / 2.0 - img_width * sc * 2.0) as i32,
+            (y / sc - img_height * sc - 20.0) as i32,
             img_pixmap.as_ref(),
             &PixmapPaint::default(),
-            Transform::from_scale(context.scale_factor * 0.3, context.scale_factor * 0.3),
+            Transform::from_scale(context.scale_factor * sc, context.scale_factor * sc),
             None,
         );
 
